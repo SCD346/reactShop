@@ -2,6 +2,9 @@ import { Menu, Container, Image, Icon } from 'semantic-ui-react'
 import Link from 'next/link'
 
 function Header() {
+  const user = true;
+
+
   return (
     <Menu fluid={true} id="menu" inverted>
       <Container text>
@@ -30,7 +33,7 @@ function Header() {
         </Link>
 
         {/* HEADER ITEM 3: Create */}
-        <Link href='/create'>
+        {user && <Link href='/create'>
           <Menu.Item header>
             <Icon
               name="add square"
@@ -38,51 +41,54 @@ function Header() {
             />
             Create
           </Menu.Item>
-        </Link>
+        </Link>}
 
-       {/* HEADER ITEM 4: Account */}
-        <Link href='/account'>
+        {user ? (
+          <>
+          {/* HEADER ITEM 4: Account */}
+          <Link href='/account'>
+            <Menu.Item header>
+              <Icon
+                name="user"
+                size="large"
+              />
+              Account
+            </Menu.Item>
+          </Link>
+
+        {/* HEADER ITEM 5: Logout */}
           <Menu.Item header>
             <Icon
-              name="user"
+              name="sign out"
               size="large"
             />
-            Account
+            Logout
           </Menu.Item>
+      </>)
+      :
+      (<>
+        {/* HEADER ITEM 6: Login */}
+        <Link href='/login'>
+          <Menu.Item header>
+              <Icon
+                name="sign in"
+                size="large"
+              />
+              Login
+            </Menu.Item>
         </Link>
 
-      {/* HEADER ITEM 5: Logout */}
-      <Link href='/logout'>
-        <Menu.Item header>
-          <Icon
-            name="sign out"
-            size="large"
-          />
-          Logout
-        </Menu.Item>
-      </Link>
-
-      {/* HEADER ITEM 6: Login */}
-      <Link href='/login'>
-        <Menu.Item header>
-            <Icon
-              name="sign in"
-              size="large"
-            />
-            Login
-          </Menu.Item>
-      </Link>
-
-      {/* HEADER ITEM 7: Signup */}
-      <Link href='/signup'>
-        <Menu.Item header>
-            <Icon
-              name="signup"
-              size="large"
-            />
-            Signup
-          </Menu.Item>
-      </Link>
+        {/* HEADER ITEM 7: Signup */}
+        <Link href='/signup'>
+          <Menu.Item header>
+              <Icon
+                name="signup"
+                size="large"
+              />
+              Signup
+            </Menu.Item>
+        </Link>
+      </>)}
 
       </Container>
     </Menu>
